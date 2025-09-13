@@ -16,7 +16,7 @@ end
 local function downloadFile(file, read)
     url = file:gsub('pineapple/', '')
     if not isfile(file) then
-        writefile(file, game:HttpGet('https://raw.githubusercontent.com/GamingChairV4/pineapple/'..readfile('pineapple/commit.txt')..'/'..url))
+        writefile(file, game:HttpGet('https://raw.githubusercontent.com/pinpple/pineapple/'..readfile('pineapple/commit.txt')..'/'..url))
     end
 
     if read ~= nil and read == false then
