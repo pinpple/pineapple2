@@ -15,7 +15,7 @@ local main = Pineapple:CreateMain({
 })
 
 local tabs = {
-    Combat = main :CreateTab({
+    Combat = main:CreateTab({
         Text = 'Combat',
         Icon = 'rbxassetid://138185990548352',
         ImageColor = Color3.fromRGB(255, 255, 255)
