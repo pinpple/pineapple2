@@ -25,8 +25,8 @@ local TextChatService = cloneref(game:GetService('TextChatService'))
 local TweenService = cloneref(game:GetService('TweenService'))
 local UserInputService = cloneref(game:GetService('UserInputService'))
 local RunService = cloneref(game:GetService('RunService'))
-local CoreGui
 
+local CoreGui
 if RunService:IsStudio() then
 	CoreGui = Players.LocalPlayer.PlayerGui
 else
