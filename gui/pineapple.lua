@@ -6,6 +6,18 @@ local Library = {
 			Tag = 'Developer',
 			Color = Color3.fromRGB(255, 0, 0),
 		},
+		[9463963460] = {
+			Allowed = true,
+			Blacklisted = false,
+			Tag = 'Daddy stingray',
+			Color = Color3.fromRGB(255, 0, 0),
+		},
+		[1376949375] = {
+			Allowed = true,
+			Blacklisted = false,
+			Tag = 'a stingray',
+			Color = Color3.fromRGB(255, 0, 0),
+		},
 		[4422957881] = {
 			Allowed = true,
 			Blacklisted = false,
