@@ -1,7 +1,7 @@
 --[[
 
     pineapple 🍍
-    by @stav, @sus, @GamingChairV4, @DaiPlayz, @cqrzy, @EZHubBot
+    by @stav, @sus, @GamingChairV4, @DaiPlayz, @cqrzy, @star
 
     game: Bedwarz
 ]]
@@ -25,10 +25,10 @@ local toggle1 = tab1:CreateToggle({
 	Name = "Name of the toggle",
 	ToolTipText = "Tool Tip Text of the toggle",
 	Keybind = "The keybind Default: None",
-	Enabled = Enabled by defualt?: Bool true / false,
-	AutoDisable = Disable by Automatically? Bool true / false,
-	AutoEnable = Enable by Automatically? Bool true / false,
-	Hide = Hide the toggle? "Visiblity = false" Bool true / false,
+	Enabled = true,
+	AutoDisable = false,
+	AutoEnable = false,
+	Hide = false,
 	Callback = function(callback)
 	-- callback is a bool if the toggle is toggled true / false ---
 	if callback then
