@@ -10,4 +10,4 @@ local Pineapple = loadstring(readfile('pineapple/gui/pineapple.lua'))()
 
 Pineapple:CreateMain()
 
-library:CreateTab({Combat, 1, 255, 255, 255})
+Pineapple:CreateTab({Combat, 1, 255, 255, 255})
