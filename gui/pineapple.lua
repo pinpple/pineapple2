@@ -3,29 +3,34 @@ local Library = {
 		[1661693016] = {
 			Allowed = true,
 			Blacklisted = false,
-			Tag = "Developer",
+			Tag = 'Developer',
 			Color = Color3.fromRGB(255, 0, 0),
 		},
 		[4422957881] = {
 			Allowed = true,
 			Blacklisted = false,
-			Tag = "sus",
+			Tag = 'sus',
 			Color = Color3.fromRGB(60, 0, 255),
 		},
 	},
 }
 
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local TextChatService = game:GetService('TextChatService')
-local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService('UserInputService')
-local RunService = game:GetService("RunService")
+local cloneref = cloneref or function(obj)
+	return obj
+end
+
+local HttpService = cloneref(game:GetService('HttpService'))
+local Players = cloneref(game:GetService('Players'))
+local TextChatService = cloneref(game:GetService('TextChatService'))
+local TweenService = cloneref(game:GetService('TweenService'))
+local UserInputService = cloneref(game:GetService('UserInputService'))
+local RunService = cloneref(game:GetService('RunService'))
 local CoreGui
+
 if RunService:IsStudio() then
 	CoreGui = Players.LocalPlayer.PlayerGui
 else
-	CoreGui = game:GetService("CoreGui")
+	CoreGui = cloneref(game:GetService('CoreGui'))
 end
 
 if not shared.PineappleScriptUninjected then
@@ -38,7 +43,7 @@ end
 TextChatService.OnIncomingMessage = function(Message)
 	local Properties = Instance.new('TextChatMessageProperties')
 
-	if Library["Whitelist"] and not shared.PineappleScriptUninjected and Library["Whitelist"][Message.TextSource.UserId].Allowed == true and Library["Whitelist"][Message.TextSource.UserId].Blacklisted == false then
+	if Library['Whitelist'] and not shared.PineappleScriptUninjected and Library['Whitelist'][Message.TextSource.UserId].Allowed == true and Library['Whitelist'][Message.TextSource.UserId].Blacklisted == false then
 		task.spawn(function()
 			Properties.PrefixText = `<font color='rgb({Library["Whitelist"][Message.TextSource.UserId].Color})'>[{Library["Whitelist"][Message.TextSource.UserId].Tag}] </font>` .. Message.PrefixText
 		end)
@@ -47,7 +52,7 @@ TextChatService.OnIncomingMessage = function(Message)
 	return Properties
 end
 
-local gui = Instance.new("ScreenGui")
+local gui = Instance.new('ScreenGui')
 gui.ResetOnSpawn = false
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 gui.Parent = CoreGui
@@ -94,7 +99,7 @@ function getfontsize(text, size, font)
 	if typeof(font) == 'Font' then
 		fontsize.Font = font
 	end
-	return game:GetService("TextService"):GetTextBoundsAsync(fontsize)
+	return game:GetService('TextService'):GetTextBoundsAsync(fontsize)
 end
 
 function addTooltip(gui, text)
@@ -170,13 +175,13 @@ function Library:CreateMain(properties)
 
 		properties = {
 			textCharacters = properties.textCharacters or 10,
-			Toggle = properties.Toggle or "RightShift",
+			Toggle = properties.Toggle or 'RightShift',
 			MainTextColor = properties.MainTextColor or Color3.fromRGB(255, 255, 10)
 		}
 
 		shared.PinappleScriptLoaded = true
 
-		local ScreenGui = Instance.new("ScreenGui", CoreGui)
+		local ScreenGui = Instance.new('ScreenGui', CoreGui)
 		ScreenGui.Name = Generate(properties.textCharacters)
 		ScreenGui.ResetOnSpawn = false
 
@@ -206,7 +211,7 @@ function Library:CreateMain(properties)
 		local MainFrame = nil
 		if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled then
 			if MainFrame == nil then
-				MainFrame = Instance.new("ScrollingFrame")
+				MainFrame = Instance.new('ScrollingFrame')
 				MainFrame.Parent = ScreenGui
 				MainFrame.Active = true
 				MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -221,7 +226,7 @@ function Library:CreateMain(properties)
 			end
 		elseif not UserInputService.TouchEnabled and UserInputService.KeyboardEnabled and UserInputService.MouseEnabled then
 			if MainFrame == nil then
-				MainFrame = Instance.new("Frame")
+				MainFrame = Instance.new('Frame')
 				MainFrame.Parent = ScreenGui
 				MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				MainFrame.BackgroundTransparency = 1
@@ -231,8 +236,8 @@ function Library:CreateMain(properties)
 			end
 		end
 
-		local LibraryText = Instance.new("TextLabel", MainFrame)
-		LibraryText.Name = "LibraryText"
+		local LibraryText = Instance.new('TextLabel', MainFrame)
+		LibraryText.Name = 'LibraryText'
 		LibraryText.BackgroundTransparency = 1
 		LibraryText.FontFace = Font.fromEnum(Enum.Font.TitilliumWeb, Enum.FontWeight.Regular)
 		LibraryText.Size = UDim2.new(0, 200,0, 35)
@@ -243,7 +248,7 @@ function Library:CreateMain(properties)
 		LibraryText.TextXAlignment = Enum.TextXAlignment.Left
 		LibraryText.TextYAlignment = Enum.TextYAlignment.Center
 		LibraryText.TextColor3 = Color3.fromRGB(255, 255, 10)
-		LibraryText.Text = "pineapple"
+		LibraryText.Text = 'pineapple'
 		LibraryText.ZIndex = 99
 		LibraryText.LayoutOrder = 0
 		LibraryText.Interactable = false
@@ -251,22 +256,22 @@ function Library:CreateMain(properties)
 
 		if shared.DisablePineappleImage then
 		else
-			local LibraryTextImage = Instance.new("ImageLabel", LibraryText)
+			local LibraryTextImage = Instance.new('ImageLabel', LibraryText)
 			LibraryTextImage.BackgroundTransparency = 1
-			LibraryTextImage.Name = "ImageLabel"
+			LibraryTextImage.Name = 'ImageLabel'
 			LibraryTextImage.Size = UDim2.new(0, 68 ,0, 59)
 			LibraryTextImage.Position = UDim2.new(0.45, 0, -0.4, 0)
-			LibraryTextImage.Image = "rbxassetid://126819632241697"
+			LibraryTextImage.Image = 'rbxassetid://126819632241697'
 			LibraryTextImage.ImageColor3 = Color3.fromRGB(255,255,255)
 		end
 
-		local NotifFrame = Instance.new("Frame", MainFrame)
+		local NotifFrame = Instance.new('Frame', MainFrame)
 		NotifFrame.BackgroundTransparency = 1
 		NotifFrame.Position = UDim2.new(0.73, 0,0, 0)
 		NotifFrame.Size = UDim2.new(0, 313,0, 615)
 		NotifFrame.ZIndex = 2
 
-		local uilistLayout_notif = Instance.new("UIListLayout", NotifFrame)
+		local uilistLayout_notif = Instance.new('UIListLayout', NotifFrame)
 		uilistLayout_notif.FillDirection = Enum.FillDirection.Vertical
 		uilistLayout_notif.SortOrder = Enum.SortOrder.LayoutOrder
 		uilistLayout_notif.VerticalAlignment = Enum.VerticalAlignment.Bottom
@@ -274,45 +279,45 @@ function Library:CreateMain(properties)
 		uilistLayout_notif.Padding = UDim.new(0, 8)
 
 		function Library:notif(title, desc, duration, imagetype)
-			local notificationFrame = Instance.new("Frame", NotifFrame)
-			notificationFrame:SetAttribute("duration", duration) 
+			local notificationFrame = Instance.new('Frame', NotifFrame)
+			notificationFrame:SetAttribute('duration', duration) 
 			notificationFrame.BackgroundColor3 = Color3.fromRGB(25,25,25)
 			notificationFrame.BackgroundTransparency = 0.2
 			notificationFrame.BorderSizePixel = 0
 			notificationFrame.Size = UDim2.new(0,357,0,81)
 
-			local notifUICorner = Instance.new("UICorner", notificationFrame)
+			local notifUICorner = Instance.new('UICorner', notificationFrame)
 			notifUICorner.CornerRadius = UDim.new(0, 8)
 
 			local durationStart = UDim2.new(0, 0,0, 1)
 			local durationEnd = UDim2.new(0, 357,0, 1)
 
-			local durationLine = Instance.new("Frame", notificationFrame)
+			local durationLine = Instance.new('Frame', notificationFrame)
 			durationLine.BorderSizePixel = 0
 			durationLine.BackgroundTransparency = 0
 			durationLine.BackgroundColor3 = Color3.fromRGB(255,255,255)
 			durationLine.Position = UDim2.new(0,2,0.97,0)
 			durationLine.Size = durationStart
 
-			local image = Instance.new("ImageLabel", notificationFrame)
+			local image = Instance.new('ImageLabel', notificationFrame)
 			image.BackgroundTransparency = 1
 			image.Position = UDim2.new(-0.051, 0, -0.223, 0)
 			image.Size = UDim2.new(0,78, 0, 73)
 
 			if imagetype == nil then
-				image.Image = "rbxassetid://14368324807"
-			elseif string.lower(imagetype) == "info" or string.lower(imagetype) == "information" then
-				image.Image = "rbxassetid://14368324807"
-			elseif string.lower(imagetype) == "warning" then
-				image.Image = "rbxassetid://14368361552"
-			elseif string.lower(imagetype) == "error" then
-				image.Image = "rbxassetid://14368301329"
+				image.Image = 'rbxassetid://14368324807'
+			elseif string.lower(imagetype) == 'info' or string.lower(imagetype) == 'information' then
+				image.Image = 'rbxassetid://14368324807'
+			elseif string.lower(imagetype) == 'warning' then
+				image.Image = 'rbxassetid://14368361552'
+			elseif string.lower(imagetype) == 'error' then
+				image.Image = 'rbxassetid://14368301329'
 			end
 
-			local titleText = Instance.new("TextLabel", notificationFrame)
+			local titleText = Instance.new('TextLabel', notificationFrame)
 			titleText.BackgroundTransparency = 1
 			titleText.Text = title
-			titleText.Name = "title"
+			titleText.Name = 'title'
 			titleText.Position = UDim2.new(0.105,0,0.108,0)
 			titleText.Size = UDim2.new(0, 200,0,18)
 			titleText.FontFace = Font.fromEnum(Enum.Font.Arimo, Enum.FontWeight.Regular)
@@ -320,9 +325,9 @@ function Library:CreateMain(properties)
 			titleText.TextColor3 = Color3.fromRGB(255,255,255)
 			titleText.TextXAlignment = Enum.TextXAlignment.Left
 
-			local InformationText = Instance.new("TextLabel", notificationFrame)
+			local InformationText = Instance.new('TextLabel', notificationFrame)
 			InformationText.BackgroundTransparency = 1
-			InformationText.Name = "info"
+			InformationText.Name = 'info'
 			InformationText.Text = desc
 			InformationText.Position = UDim2.new(0.144, 0,0.431, 0)
 			InformationText.Size = UDim2.new(0, 304,0, 28)
@@ -334,12 +339,12 @@ function Library:CreateMain(properties)
 
 		NotifFrame.ChildAdded:Connect(function(notificationFrame)
 			local durationEnd = UDim2.new(0, 357,0, 1)
-			local durationLine = notificationFrame:FindFirstChildOfClass("Frame")
-			local titleText = notificationFrame:WaitForChild("title")
-			local InformationText = notificationFrame:WaitForChild("info")
-			local image = notificationFrame:FindFirstChildOfClass("ImageLabel")
-			TweenService:Create(durationLine,TweenInfo.new(notificationFrame:GetAttribute("duration")), {Size = durationEnd}):Play()
-			task.wait(notificationFrame:GetAttribute("duration"))
+			local durationLine = notificationFrame:FindFirstChildOfClass('Frame')
+			local titleText = notificationFrame:WaitForChild('title')
+			local InformationText = notificationFrame:WaitForChild('info')
+			local image = notificationFrame:FindFirstChildOfClass('ImageLabel')
+			TweenService:Create(durationLine,TweenInfo.new(notificationFrame:GetAttribute('duration')), {Size = durationEnd}):Play()
+			task.wait(notificationFrame:GetAttribute('duration'))
 			TweenService:Create(notificationFrame, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
 			TweenService:Create(durationLine, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
 			TweenService:Create(titleText, TweenInfo.new(0.5), {TextTransparency = 1}):Play()
@@ -351,12 +356,12 @@ function Library:CreateMain(properties)
 			local Tabs = {}
 
 			PropertiesToggle = {
-				Text = PropertiesToggle.Text or "",
-				Image = PropertiesToggle.Image or "rbxassetid://0",
+				Text = PropertiesToggle.Text or '',
+				Image = PropertiesToggle.Image or 'rbxassetid://0',
 				ImageColor = PropertiesToggle.ImageColor or Color3.fromRGB(255, 255, 255)
 			}
 
-			local Tab = Instance.new("Frame", MainFrame)
+			local Tab = Instance.new('Frame', MainFrame)
 			Tab.BackgroundTransparency = 0.03
 			Tab.BorderSizePixel = 0
 			Tab.BackgroundColor3 = Color3.fromRGB(25,25,25)
@@ -369,7 +374,7 @@ function Library:CreateMain(properties)
 				MakeDraggable(Tab)
 			end
 
-			local TabTitle = Instance.new("TextLabel", Tab)
+			local TabTitle = Instance.new('TextLabel', Tab)
 			TabTitle.BackgroundTransparency = 1
 			TabTitle.Position = UDim2.new(0,5,0,0)
 			TabTitle.Size = UDim2.new(0,145,1,0)
@@ -385,7 +390,7 @@ function Library:CreateMain(properties)
 			TabTitle.TextYAlignment = Enum.TextYAlignment.Center
 			TabTitle.BorderSizePixel = 0
 
-			local ImageLabel = Instance.new("ImageLabel")
+			local ImageLabel = Instance.new('ImageLabel')
 			ImageLabel.ZIndex = 2
 			ImageLabel.Parent = Tab
 			ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -395,10 +400,10 @@ function Library:CreateMain(properties)
 			ImageLabel.BorderSizePixel = 0
 			ImageLabel.Position = UDim2.new(0, 172, 0.5, 0)
 			ImageLabel.Size = UDim2.new(0, 18, 0, 18)
-			ImageLabel.Image = "rbxassetid://" .. PropertiesToggle.Image
+			ImageLabel.Image = 'rbxassetid://' .. PropertiesToggle.Image
 			ImageLabel.ImageColor3 = PropertiesToggle.ImageColor
 
-			local TogglesList = Instance.new("Frame")
+			local TogglesList = Instance.new('Frame')
 			TogglesList.ZIndex = 2
 			TogglesList.Parent = Tab
 			TogglesList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -408,7 +413,7 @@ function Library:CreateMain(properties)
 			TogglesList.Position = UDim2.new(0, 0, 1, 0)
 			TogglesList.Size = UDim2.new(1, 0, 0, 0)
 
-			local UIListLayout = Instance.new("UIListLayout")
+			local UIListLayout = Instance.new('UIListLayout')
 			UIListLayout.Parent = TogglesList
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
@@ -419,7 +424,7 @@ function Library:CreateMain(properties)
 				ToggleButton = {
 					Name = ToggleButton.Name,
 					ToolTipText = ToggleButton.ToolTipText,
-					Keybind = ToggleButton.Keybind or "None",
+					Keybind = ToggleButton.Keybind or 'None',
 					Enabled = ToggleButton.Enabled or false,
 					AutoEnable = ToggleButton.AutoEnable or false,
 					AutoDisable = ToggleButton.AutoDisable or false,
@@ -427,8 +432,8 @@ function Library:CreateMain(properties)
 					Callback = ToggleButton.Callback or function() end
 				}
 
-				local toggleButton = Instance.new("TextButton", TogglesList)
-				toggleButton.Text = ""
+				local toggleButton = Instance.new('TextButton', TogglesList)
+				toggleButton.Text = ''
 				toggleButton.BorderSizePixel = 0
 				toggleButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 				toggleButton.Size = UDim2.new(1, 0,0, 25)
@@ -443,13 +448,13 @@ function Library:CreateMain(properties)
 					toggleButton.Visible = true
 				end
 
-				local uigrad = Instance.new("UIGradient", toggleButton)
+				local uigrad = Instance.new('UIGradient', toggleButton)
 				uigrad.Enabled = false
 				uigrad.Rotation = 0
 				uigrad.Offset = Vector2.new(0,0)
 				uigrad.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255,247,1))})
 
-				local toggleName = Instance.new("TextLabel", toggleButton)
+				local toggleName = Instance.new('TextLabel', toggleButton)
 				toggleName.BackgroundTransparency = 1
 				toggleName.BorderSizePixel = 0
 				toggleName.Position = UDim2.new(0,5,0,0)
@@ -474,19 +479,19 @@ function Library:CreateMain(properties)
 					end
 				end
 
-				local DropdownButton = Instance.new("TextButton", toggleButton)
+				local DropdownButton = Instance.new('TextButton', toggleButton)
 				DropdownButton.AnchorPoint = Vector2.new(0.5,0.5)
 				DropdownButton.BackgroundTransparency = 1
 				DropdownButton.Position = UDim2.new(0, 173, 0.5, 0)
 				DropdownButton.Size = UDim2.new(0,20,0,20)
 				DropdownButton.ZIndex = 2
 				DropdownButton.FontFace = Font.fromEnum(Enum.Font.SourceSans, Enum.FontWeight.Regular)
-				DropdownButton.Text = ">"
+				DropdownButton.Text = '>'
 				DropdownButton.TextColor3 = Color3.fromRGB(255,255,255)
 				DropdownButton.TextScaled = true
 				DropdownButton.TextWrapped = true
 
-				local DropdownList = Instance.new("Frame")
+				local DropdownList = Instance.new('Frame')
 				DropdownList.ZIndex = 2
 				DropdownList.Parent = toggleButton
 				DropdownList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -497,11 +502,11 @@ function Library:CreateMain(properties)
 				DropdownList.Position = UDim2.new(0, 0, 1, 0)
 				DropdownList.Size = UDim2.new(1, 0, 0, 0)
 
-				local UIListLayout = Instance.new("UIListLayout")
+				local UIListLayout = Instance.new('UIListLayout')
 				UIListLayout.Parent = DropdownList
 				UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-				local ToggleMenu = Instance.new("Frame")
+				local ToggleMenu = Instance.new('Frame')
 				ToggleMenu.Parent = TogglesList
 				ToggleMenu.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 				--ToggleMenu.BackgroundTransparency = 1
@@ -511,19 +516,19 @@ function Library:CreateMain(properties)
 				ToggleMenu.Size = UDim2.new(1,0,0,25)
 				ToggleMenu.Visible = false
 
-				local UIListLayout = Instance.new("UIListLayout")
+				local UIListLayout = Instance.new('UIListLayout')
 				UIListLayout.Parent = ToggleMenu
 				UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 				ToggleMenu.Size = UDim2.new(1,0,0,ToggleMenu.Size.Y.Offset + 25)
-				local KeybindButton = Instance.new("TextButton", ToggleMenu)
+				local KeybindButton = Instance.new('TextButton', ToggleMenu)
 				KeybindButton.BackgroundColor3 = Color3.fromRGB(68,68,68)
 				KeybindButton.BorderSizePixel = 0
 				KeybindButton.Size = UDim2.new(1,0,0,25)
 				KeybindButton.Visible = false
 				KeybindButton.ZIndex = 2
 				KeybindButton.FontFace = Font.fromEnum(Enum.Font.SourceSans, Enum.FontWeight.Regular)
-				KeybindButton.Text = ""
+				KeybindButton.Text = ''
 
 				--local ToggleMenu = Instance.new("Frame")
 				--ToggleMenu.Parent = TogglesList
@@ -537,8 +542,8 @@ function Library:CreateMain(properties)
 
 				table.insert(DropdownToggles, KeybindButton)
 
-				local keybindText = Instance.new("TextLabel", KeybindButton)
-				keybindText.Text = "Keybind"
+				local keybindText = Instance.new('TextLabel', KeybindButton)
+				keybindText.Text = 'Keybind'
 				keybindText.TextColor3 = Color3.fromRGB(255,255,255)
 				keybindText.FontFace = Font.fromEnum(Enum.Font.Arimo, Enum.FontWeight.Regular)
 				keybindText.TextScaled = false
@@ -551,9 +556,9 @@ function Library:CreateMain(properties)
 				keybindText.ZIndex = 2
 				keybindText.TextXAlignment = Enum.TextXAlignment.Left
 
-				local keybindTextbox = Instance.new("TextBox", KeybindButton)
+				local keybindTextbox = Instance.new('TextBox', KeybindButton)
 				keybindTextbox.Text = ToggleButton.Keybind
-				keybindTextbox.PlaceholderText = ""
+				keybindTextbox.PlaceholderText = ''
 				keybindTextbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 				keybindTextbox.TextColor3 = Color3.fromRGB(255,255,255)
 				keybindTextbox.FontFace = Font.fromEnum(Enum.Font.SourceSans, Enum.FontWeight.Regular)
@@ -568,9 +573,9 @@ function Library:CreateMain(properties)
 
 				RunService.RenderStepped:Connect(function()
 					if shared.PineappleScriptUninjected then
-						ToggleButton.Keybind = "None"
+						ToggleButton.Keybind = 'None'
 
-						keybindTextbox.PlaceholderText = ""
+						keybindTextbox.PlaceholderText = ''
 						keybindTextbox.Text = ToggleButton.Keybind
 					end
 				end)
@@ -579,17 +584,17 @@ function Library:CreateMain(properties)
 					if Input.UserInputType == Enum.UserInputType.Keyboard then
 						if keybindTextbox:IsFocused() then
 							ToggleButton.Keybind = Input.KeyCode.Name
-							keybindTextbox.PlaceholderText = ""
+							keybindTextbox.PlaceholderText = ''
 							keybindTextbox.Text = Input.KeyCode.Name
 							keybindTextbox:ReleaseFocus()
-						elseif ToggleButton.Keybind == "Backspace" then
-							ToggleButton.Keybind = "None"
-							keybindTextbox.Text = "None"
-							keybindTextbox.PlaceholderText = ""
+						elseif ToggleButton.Keybind == 'Backspace' then
+							ToggleButton.Keybind = 'None'
+							keybindTextbox.Text = 'None'
+							keybindTextbox.PlaceholderText = ''
 						end  
 
 						if not isTyping then
-							if ToggleButton.Keybind ~= "None" then
+							if ToggleButton.Keybind ~= 'None' then
 								if Input.KeyCode == Enum.KeyCode[ToggleButton.Keybind] then
 									ToggleButton.Enabled = not ToggleButton.Enabled
 									ToggleButtonClicked()
@@ -605,14 +610,14 @@ function Library:CreateMain(properties)
 
 				function dropdownTable:CreateMiniToggle(MinitoggleProperties)
 					MinitoggleProperties = {
-						Name = MinitoggleProperties.Name or "",
+						Name = MinitoggleProperties.Name or '',
 						Enabled = MinitoggleProperties.Enabled or false,
 						Callback = MinitoggleProperties.Callback or function() end
 					}
 
 					ToggleMenu.Size = UDim2.new(1,0,0,ToggleMenu.Size.Y.Offset + 25)
-					local toggleButton = Instance.new("TextButton", ToggleMenu)
-					toggleButton.Text = ""
+					local toggleButton = Instance.new('TextButton', ToggleMenu)
+					toggleButton.Text = ''
 					toggleButton.Visible = false
 					toggleButton.BorderSizePixel = 0
 					toggleButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
@@ -620,13 +625,13 @@ function Library:CreateMain(properties)
 
 					table.insert(DropdownToggles, toggleButton)
 
-					local uigrad = Instance.new("UIGradient", toggleButton)
+					local uigrad = Instance.new('UIGradient', toggleButton)
 					uigrad.Enabled = false
 					uigrad.Rotation = 0
 					uigrad.Offset = Vector2.new(0,0)
 					uigrad.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255,247,1))})
 
-					local toggleName = Instance.new("TextLabel", toggleButton)
+					local toggleName = Instance.new('TextLabel', toggleButton)
 					toggleName.BackgroundTransparency = 1
 					toggleName.BorderSizePixel = 0
 					toggleName.Position = UDim2.new(0,5,0,0)
@@ -686,7 +691,7 @@ function Library:CreateMain(properties)
 					--SliderHolder.Size = UDim2.new(1, 0, 0, 28)
 
 					ToggleMenu.Size = UDim2.new(1,0,0,ToggleMenu.Size.Y.Offset + 35)
-					local SliderHolder = Instance.new("Frame", ToggleMenu)
+					local SliderHolder = Instance.new('Frame', ToggleMenu)
 					SliderHolder.Visible = false
 					SliderHolder.BorderSizePixel = 0
 					SliderHolder.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
@@ -694,13 +699,13 @@ function Library:CreateMain(properties)
 
 					table.insert(DropdownToggles, SliderHolder)
 
-					local uigrad = Instance.new("UIGradient", SliderHolder)
+					local uigrad = Instance.new('UIGradient', SliderHolder)
 					uigrad.Enabled = false
 					uigrad.Rotation = 0
 					uigrad.Offset = Vector2.new(0,0)
 					uigrad.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255,247,1))})
 
-					local SliderHolderName = Instance.new("TextLabel")
+					local SliderHolderName = Instance.new('TextLabel')
 					SliderHolderName.Parent = SliderHolder
 					SliderHolderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					SliderHolderName.BackgroundTransparency = 1
@@ -716,7 +721,7 @@ function Library:CreateMain(properties)
 					SliderHolderName.TextWrapped = true
 					SliderHolderName.TextXAlignment = Enum.TextXAlignment.Left
 
-					local SliderHolderValue = Instance.new("TextLabel")
+					local SliderHolderValue = Instance.new('TextLabel')
 					SliderHolderValue.Parent = SliderHolder
 					SliderHolderValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					SliderHolderValue.BackgroundTransparency = 1
@@ -730,7 +735,7 @@ function Library:CreateMain(properties)
 					SliderHolderValue.TextWrapped = true
 					SliderHolderValue.TextXAlignment = Enum.TextXAlignment.Right
 
-					local SliderHolderBack = Instance.new("Frame")
+					local SliderHolderBack = Instance.new('Frame')
 					SliderHolderBack.Parent = SliderHolder
 					SliderHolderBack.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
 					SliderHolderBack.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -738,18 +743,18 @@ function Library:CreateMain(properties)
 					SliderHolderBack.Position = UDim2.new(0, 5, 0, 18)
 					SliderHolderBack.Size = UDim2.new(0, 172, 0, 8)
 
-					local SliderHolderFront = Instance.new("Frame")
+					local SliderHolderFront = Instance.new('Frame')
 					SliderHolderFront.Parent = SliderHolderBack
 					SliderHolderFront.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
 					SliderHolderFront.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					SliderHolderFront.BorderSizePixel = 0
 					SliderHolderFront.Size = UDim2.new(0, 50, 1, 0)
 
-					local SliderHolderGradient = Instance.new("UIGradient")
+					local SliderHolderGradient = Instance.new('UIGradient')
 					SliderHolderGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(138, 230, 255))}
 					SliderHolderGradient.Parent = SliderHolderFront
 
-					local SliderHolderMain = Instance.new("TextButton")
+					local SliderHolderMain = Instance.new('TextButton')
 					SliderHolderMain.Parent = SliderHolderFront
 					SliderHolderMain.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 					SliderHolderMain.BackgroundTransparency = 0.150
@@ -758,7 +763,7 @@ function Library:CreateMain(properties)
 					SliderHolderMain.Position = UDim2.new(1, 0, 0, -2)
 					SliderHolderMain.Size = UDim2.new(0, 8, 0, 12)
 					SliderHolderMain.Font = Enum.Font.SourceSans
-					SliderHolderMain.Text = ""
+					SliderHolderMain.Text = ''
 					SliderHolderMain.TextColor3 = Color3.fromRGB(0, 0, 0)
 					SliderHolderMain.TextSize = 14.000
 
@@ -799,12 +804,12 @@ function Library:CreateMain(properties)
 				function dropdownTable:CreateTextIndicator(TextIndicator)
 					TextIndicator = {
 						Name = TextIndicator.Name,
-						PlaceholderText = TextIndicator.PlaceholderText or "",
-						DefaultText = TextIndicator.DefaultText or "",
+						PlaceholderText = TextIndicator.PlaceholderText or '',
+						DefaultText = TextIndicator.DefaultText or '',
 						Callback = TextIndicator.Callback or function() end
 					}
 
-					local TextIndicatorText = Instance.new("TextBox")
+					local TextIndicatorText = Instance.new('TextBox')
 					TextIndicatorText.Parent = ToggleMenu
 					TextIndicatorText.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 					TextIndicatorText.BackgroundTransparency = 1
@@ -820,7 +825,7 @@ function Library:CreateMain(properties)
 					TextIndicatorText.TextColor3 = Color3.fromRGB(255, 255, 255)
 					TextIndicatorText.TextXAlignment = Enum.TextXAlignment.Left
 
-					TextIndicatorText:GetPropertyChangedSignal("Text"):Connect(function()
+					TextIndicatorText:GetPropertyChangedSignal('Text'):Connect(function()
 						TextIndicator.Callback(TextIndicatorText.Text)
 					end)
 					return TextIndicator
