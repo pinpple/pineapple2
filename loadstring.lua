@@ -1,0 +1,1 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/pinpple/pineapple/refs/heads/main/installer.lua'))()
