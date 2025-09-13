@@ -8,7 +8,7 @@ local function wipeFolders()
         if isfolder(v) then
             for x, d in listfiles(v) do
                 if string.find(d, 'commit.txt') then continue end
-                delfile(d)
+                pcall(delfile, d)
             end
         end
     end
