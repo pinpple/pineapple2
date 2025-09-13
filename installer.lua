@@ -7,10 +7,7 @@ local function wipeFolders()
     for _, v in {'pineapple', 'pineapple/games', 'pineapple/gui'} do
         if isfolder(v) then
             for x, d in listfiles(v) do
-                if d == 'pineapple/commit.txt' then
-                    continue
-                end
-
+                if d == 'pineapple/commit.txt' then continue end
                 delfile(d)
             end
         end
