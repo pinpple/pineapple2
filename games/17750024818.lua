@@ -4,6 +4,7 @@
     by @stav, @sus, @GamingChairV4, @DaiPlayz, @cqrzy, @star
 
     game: Bedwarz
+	status: 🟢
 ]]
 
 local Pineapple = loadstring(readfile('pineapple/gui/pineapple.lua'))()
